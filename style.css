@@ -1,0 +1,570 @@
+/* General Body & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; /* Prevents horizontal scroll on animations */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple-blue gradient */
+    color: white;
+    padding: 1rem 0;
+    position: fixed; /* Keeps header at top */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: white; /* Inherit text color for potential text logo fallback */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    height: 30px; /* Adjust logo height as needed */
+    width: 30px; /* Ensure width matches height for a circle */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    display: inline-block; /* Align with text */
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffd700; /* Gold color on hover */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Same gradient as header */
+    color: white;
+    text-align: center;
+    padding: 180px 0 100px; /* Adjust top padding for fixed header */
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh; /* Make hero section taller */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* This is an SVG pattern for a subtle background texture. You can replace with an actual image. */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,400 L0,400 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat center center/cover;
+    opacity: 0.8;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #ffd700, #ffed4e); /* Gold gradient */
+    color: #333;
+    padding: 18px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.6s forwards;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+}
+
+/* Section General Styling */
+section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+section:nth-of-type(even) { /* Apply different background to alternate sections (Services, Contact) */
+    background-color: #872fdf;
+}
+
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3.5rem;
+    color: #333;
+    position: relative;
+    display: inline-block; /* To center underline */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Services Section */
+.services {
+    background-color: #A020F0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0; /* For JavaScript animation */
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+.service-card p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* Stats Section */
+.stats {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700; /* Gold color for numbers */
+    font-weight: bold;
+}
+
+.stat-item p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* About Section */
+.about {
+    /* New background image and overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('partner.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* For parallax effect */
+    color: white; /* Set text color for readability over dark background */
+    padding: 100px 0; /* Ensure enough padding */
+    position: relative; /* For z-indexing of content */
+}
+
+/* Ensure content is on top of the background */
+.about .container {
+    position: relative;
+    z-index: 1; /* Make sure content is above the background and its overlay */
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    text-align: left; /* Text aligns left in this section */
+}
+
+.about-text h2 {
+    text-align: left; /* Override global h2 centering */
+    margin-bottom: 1.5rem;
+    color: white; /* Ensure heading is white */
+}
+.about-text h2::after { /* Align underline with left-aligned text */
+    margin: 15px 0 0 0;
+    background: #ffd700; /* Gold underline for contrast */
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9); /* Lighter white for body text */
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.about-image {
+    text-align: center; /* Center image within its grid column */
+    padding-bottom: 20px; /* Adjust spacing for circular image and caption */
+}
+
+.about-img {
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Ensure height and width are equal for a perfect circle */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3); /* Darker shadow for contrast */
+    display: block; /* Remove extra space below image */
+    margin: 0 auto 10px; /* Center image and add some bottom margin */
+    border: 3px solid #FFFFFF; /* Optional: add a border around the circular image */
+}
+
+/* New: Image Caption Style */
+.image-caption {
+    margin-top: 0; /* Adjust if needed */
+    font-size: 1.1em;
+    color: #FFFFFF; /* Gold color for caption */
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Contact Section */
+.contact {
+    background: #A9A9A9;
+}
+
+.contact h2 {
+    text-align: center;
+}
+
+.contact-intro-text {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #555;
+    text-align: center;
+}
+
+.social-links {
+    margin: 30px auto 40px; /* Adjust top/bottom margin for spacing */
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between icons */
+}
+
+.social-icon {
+    font-size: 3.2em; /* Size of the icons */
+    color: #555; /* Default icon color, darker for contrast */
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+.social-icon:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+}
+
+/* Specific colors for branding */
+.whatsapp:hover {
+    color: #25D366; /* WhatsApp green */
+}
+
+.facebook:hover {
+    color: #1877F2; /* Facebook blue */
+}
+
+.instagram:hover {
+    /* Instagram gradient requires a special trick */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Fallback for browsers that don't support text-fill-color */
+    color: #E1306C;
+}
+
+.or-separator {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #888;
+    margin: 40px 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px; /* Space for line */
+}
+
+.or-separator::before,
+.or-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.or-separator::before {
+    left: 0;
+}
+
+.or-separator::after {
+    right: 0;
+}
+
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: left; /* Align form labels/inputs to left */
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3); /* Focus ring */
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2.5rem 0;
+    font-size: 0.95rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+    .about-content {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+        text-align: center;
+        gap: 2.5rem;
+    }
+    .about-text h2 {
+        text-align: center; /* Center h2 on small screens */
+    }
+    .about-text h2::after {
+        margin: 15px auto 0; /* Center underline */
+    }
+    .about-image {
+        order: -1; /* Move image above text on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide navigation links on small screens for simplicity */
+    }
+    header {
+        padding: 0.8rem 0;
+    }
+    .hero {
+        padding: 150px 0 80px;
+        min-height: 65vh;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+    section {
+        padding: 80px 0;
+    }
+    .services-grid, .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .social-icon {
+        font-size: 2.8em;
+        gap: 20px;
+    }
+    .or-separator::before,
+    .or-separator::after {
+        width: 30%; /* Shorter lines around OR */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 0.95rem;
+    }
+    .service-card, .contact-form {
+        padding: 1.8rem;
+    }
+    .stat-item h3 {
+        font-size: 2.8rem;
+    }
+    .stat-item p {
+        font-size: 1.1rem;
+    }
+    .social-icon {
+        font-size: 2.5em;
+        gap: 15px;
+    }
+    .or-separator::before,
+    .or-separator::after {
+        width: 25%; /* Even shorter lines around OR */
+    }
+}
