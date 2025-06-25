@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple-blue gradient background */
+    background-size: cover;
+    background-position: center;
+    color: white; /* Default text color for the page */
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.15); /* Transparent white with blur */
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.login-form h2 {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: white;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: calc(100% - 40px); /* Adjust width for icon */
+    padding: 12px 15px;
+    padding-right: 40px; /* Space for icon */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ffd700; /* Gold border on focus */
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.options-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #ffd700; /* Gold checkbox */
+}
+
+.forgot-password {
+    color: white;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: white; /* White button background */
+    color: #333; /* Dark gray text */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.register-link {
+    margin-top: 25px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.register-link a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.3s;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    .login-form h2 {
+        font-size: 1.8rem;
+    }
+    .input-group input {
+        padding: 10px 15px;
+        padding-right: 35px;
+    }
+    .input-group i {
+        right: 10px;
+    }
+    .options-group {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}

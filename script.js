@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate stats on scroll
     const stats = [
-        { element: 'clients-count', target: 50, suffix: '+', format: 'int' },
-        { element: 'revenue-count', target: 500000, suffix: '+', prefix: '$', format: 'currency' },
-        { element: 'growth-count', target: 150, suffix: '%+', format: 'int' },
+        { element: 'clients-count', target: 250, suffix: '+', format: 'int' }, // Updated based on index.html
+        { element: 'revenue-count', target: 40, suffix: 'M+', prefix: 'R', format: 'currency' }, // Updated based on index.html
+        { element: 'growth-count', target: 900, suffix: '%', format: 'int' }, // Updated based on index.html (removed extra '+')
         { element: 'success-count', target: 98, suffix: '%', format: 'int' }
     ];
 
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         stats.forEach(stat => {
             const element = document.getElementById(stat.element);
             const target = stat.target;
-            let current = 0;
             const duration = 2500; // 2.5 seconds for a smoother animation
             const startTime = performance.now();
 
@@ -36,19 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let displayValue;
                 if (stat.format === 'currency') {
-                    displayValue = (progress * target).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                    // Specific handling for "R40M+"
+                    if (progress < 1) {
+                         // Animate up to the numerical part
+                         displayValue = (progress * target).toFixed(0);
+                    } else {
+                         displayValue = target; // Ensure it reaches the exact target value (e.g., 40 for R40M+)
+                    }
+                    element.textContent = (stat.prefix || '') + displayValue + (stat.suffix || '');
                 } else {
                     displayValue = Math.floor(progress * target);
+                    element.textContent = (stat.prefix || '') + displayValue + (stat.suffix || '');
                 }
 
-                element.textContent = (stat.prefix || '') + displayValue + (stat.suffix || '');
 
                 if (progress < 1) {
                     requestAnimationFrame(updateCount);
                 } else {
-                    // Ensure final value is exactly the target
+                    // Ensure final value is exactly the target after animation
                     if (stat.format === 'currency') {
-                        element.textContent = (stat.prefix || '') + target.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + (stat.suffix || '');
+                        element.textContent = (stat.prefix || '') + target + (stat.suffix || '');
                     } else {
                         element.textContent = (stat.prefix || '') + target + (stat.suffix || '');
                     }
@@ -71,15 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
     observer.observe(statsSection);
 
-    // Formspree handles the submission, so custom JS form handling is removed.
-    // document.getElementById('contactForm').addEventListener('submit', function(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData(this);
-    //     const name = formData.get('name');
-    //     alert(`Thank you ${name}! Your inquiry has been sent to Apex Creator Studios. We'll be in touch within 24 hours to discuss your potential.`);
-    //     this.reset();
-    // });
-
     // Add scroll animation to service cards
     const serviceCards = document.querySelectorAll('.service-card');
     const cardObserver = new IntersectionObserver((entries) => {
@@ -96,4 +93,36 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.delay = index * 0.15; // Set a data-delay attribute for staggered animation
         cardObserver.observe(card);
     });
+
+    // Floating effect for Hero Section
+    const heroSection = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+
+    if (heroSection && heroContent) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Calculate offset from center of hero section
+            // Normalize to a -1 to 1 range
+            const offsetX = (e.clientX - centerX) / (rect.width / 2);
+            const offsetY = (e.clientY - centerY) / (rect.height / 2);
+
+            // Determine max movement (adjust these values to control intensity)
+            const maxMovementX = 20; // Max pixels to move horizontally
+            const maxMovementY = 15; // Max pixels to move vertically
+
+            const moveX = offsetX * maxMovementX;
+            const moveY = offsetY * maxMovementY;
+
+            // Apply transform to the hero content
+            heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // Reset position when mouse leaves the hero section
+        heroSection.addEventListener('mouseleave', () => {
+            heroContent.style.transform = `translate(0, 0)`;
+        });
+    }
 });

@@ -48,8 +48,8 @@ nav {
 }
 
 .site-logo {
-    height: 30px; /* Adjust logo height as needed */
-    width: 30px; /* Ensure width matches height for a circle */
+    height: 50px; /* Increased logo height */
+    width: 50px; /* Increased logo width */
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
@@ -57,7 +57,7 @@ nav {
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Increased font size */
     font-weight: bold;
     color: white;
 }
@@ -76,6 +76,20 @@ nav {
 
 .nav-links a:hover {
     color: #ffd700; /* Gold color on hover */
+}
+
+.login-button {
+    background-color: #ffd700; /* Gold color for button */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #ffed4e; /* Lighter gold on hover */
 }
 
 /* Hero Section */
@@ -109,6 +123,9 @@ nav {
     z-index: 2;
     max-width: 900px;
     margin: 0 auto;
+    /* NEW: For the floating effect */
+    transition: transform 0.1s ease-out; /* Smooth transition for movement */
+    will-change: transform; /* Hint to the browser for performance */
 }
 
 .hero h1 {
